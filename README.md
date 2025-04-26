@@ -5,15 +5,17 @@ in progress at the moment.
 
 ## Getting Started
 
-First, run the development server:
+Bun runtime is used below but you can use `npm`, `yarn`, or `pnpm`.
+
+First, install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun i
+```
+
+Then, run the development server:
+
+```bash
 bun dev
 ```
 

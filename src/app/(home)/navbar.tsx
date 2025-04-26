@@ -1,14 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { Poppins } from "next/font/google";
+import { MenuIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import { Lightbulb, LightbulbOff } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { NavbarSidebar } from "./navbar-sidebar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ const navbarItems = [
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -65,6 +67,13 @@ export const Navbar = () => {
           mth
         </span>
       </Link>
+
+      <NavbarSidebar
+        items={navbarItems}
+        open={isSidebarOpen}
+        onOpenChange={setIsSidebarOpen}
+      />
+
       <div className="items-center ml-auto gap-4 hidden lg:flex">
         {navbarItems.map((item) => (
           <NavbarItem
@@ -76,7 +85,7 @@ export const Navbar = () => {
           </NavbarItem>
         ))}
       </div>
-      <div className="ml-auto items-center">
+      <div className="ml-auto items-center hidden lg:flex">
         <Button
           variant="outline"
           className="border-l border-t-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-sky-300 dark:hover:bg-amber-600 transition-colors text-lg"
@@ -95,6 +104,15 @@ export const Navbar = () => {
           className="border-l border-t-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-sky-300 dark:hover:bg-amber-600 transition-colors text-lg"
         >
           Theme
+        </Button>
+      </div>
+      <div className="flex lg:hidden items-center justify-center">
+        <Button
+          variant="outline"
+          className="size-16 border-transparent dark:border-transparent dark:bg-background dark:hover:bg-background"
+          onClick={() => setIsSidebarOpen(true)}
+        >
+          <MenuIcon />
         </Button>
       </div>
     </nav>
