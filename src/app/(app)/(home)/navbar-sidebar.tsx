@@ -33,18 +33,17 @@ export const NavbarSidebar = ({ items, open, onOpenChange }: Props) => {
   };
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="left" className="p-0 transition-none">
+      <SheetContent side="right" className="p-0 transition-none">
         <SheetHeader className="p-4 border-b">
-          <div className="flex items-center">
-            <SheetTitle>Menu</SheetTitle>
-          </div>
+          <SheetTitle>Menu</SheetTitle>
         </SheetHeader>
         <ScrollArea className="flex flex-col overflow-y-auto h-full pb-2">
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="w-full text-left p-4 hover:bg-black hover:text-white dark:hover:bg-secondary flex items-center text-base font-medium"
+              className="w-full p-4 hover:bg-black hover:text-white dark:hover:bg-secondary flex items-center text-base font-medium"
+              onClick={() => onOpenChange(false)}
             >
               {item.children}
             </Link>
@@ -53,7 +52,7 @@ export const NavbarSidebar = ({ items, open, onOpenChange }: Props) => {
             <Button
               onClick={toggleTheme}
               variant="outline"
-              className="bg-background border-transparent dark:bg-background hover:bg-black hover:text-white dark:hover:bg-secondary text-base font-medium"
+              className="bg-background dark:bg-background border-transparent dark:border-transparent hover:bg-black hover:text-white dark:hover:bg-secondary text-base font-medium"
             >
               Theme
             </Button>
